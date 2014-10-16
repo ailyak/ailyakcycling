@@ -1,0 +1,105 @@
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+        <script src="http://underscorejs.org/underscore.js"></script>
+        <script>
+            
+            // http://www.mtb-bg.com/forum/viewtopic.php?f=3&t=161512
+            
+            var items = [
+                {
+                    id: _.uniqueId(),
+                    name: 'каска',
+                    checked: true
+                }, {
+                    id: _.uniqueId(),
+                    name: 'телефонт, работещ през цялото каране',
+                    checked: true
+                }, {
+                    id: _.uniqueId(),
+                    name: 'помпа',
+                    checked: true
+                }, {
+                    id: _.uniqueId(),
+                    name: 'рез. гума',
+                    checked: false
+                }, {
+                    id: _.uniqueId(),
+                    name: 'връхна дреха',
+                    checked: true
+                }, {
+                    id: _.uniqueId(),
+                    name: 'вода',
+                    checked: false
+                }, {
+                    id: _.uniqueId(),
+                    name: 'храна',
+                    checked: true
+                }, {
+                    id: _.uniqueId(),
+                    name: 'резервно ухо',
+                    checked: false
+                }, {
+                    id: _.uniqueId(),
+                    name: 'Наколенки',
+                    checked: false
+                }, {
+                    id: _.uniqueId(),
+                    name: 'Фар',
+                    checked: false
+                }, {
+                    id: _.uniqueId(),
+                    name: 'Mигалка',
+                    checked: false
+                }, {
+                    id: _.uniqueId(),
+                    name: 'Джобни инструменти (при нужда клюя 15)',
+                    checked: false
+                }, {
+                    id: _.uniqueId(),
+                    name: 'лепило & лепенки',
+                    checked: false
+                }
+            ];
+
+            $(document).ready(function () {
+                var html = '';
+                $(items).each(function (key, item) {
+                    html += '<input type="checkbox" value="' + item.id + '" ';
+                    if (item.checked) {
+                        html += ' checked ';
+                    }
+                    html += ' />' + item.name + '<br/>';
+                });
+                $('#content').html(html);
+                
+                
+                $('input').change(function () {
+                    
+                    var html = '';
+                    $('input:checked').each(function(key, el) {
+                        var item = _(items).findWhere({id: $(el).val()});
+                        html += item.name + "\n";
+                    });
+                    
+                    $('#generatedContent').val(html);
+                });
+            });
+
+            
+
+
+        </script>
+
+    </head>
+    <body>
+        <div id="content"></div>
+        <textarea id="generatedContent" style="width: 400px; height: 200px;"></textarea>
+
+
+    </body>
+</html>
