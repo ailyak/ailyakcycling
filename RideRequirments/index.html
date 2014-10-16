@@ -9,6 +9,10 @@
         <script>
             
             // http://www.mtb-bg.com/forum/viewtopic.php?f=3&t=161512
+            /*
+                Ухо, Фар
+                
+            */
             
             var items = [
                 {
@@ -41,15 +45,7 @@
                     checked: true
                 }, {
                     id: _.uniqueId(),
-                    name: 'резервно ухо',
-                    checked: false
-                }, {
-                    id: _.uniqueId(),
                     name: 'Наколенки',
-                    checked: false
-                }, {
-                    id: _.uniqueId(),
-                    name: 'Фар',
                     checked: false
                 }, {
                     id: _.uniqueId(),
@@ -57,7 +53,7 @@
                     checked: false
                 }, {
                     id: _.uniqueId(),
-                    name: 'Джобни инструменти (при нужда клюя 15)',
+                    name: 'Джобни инструменти (при нужда ключ 15)',
                     checked: false
                 }, {
                     id: _.uniqueId(),
@@ -69,14 +65,12 @@
             $(document).ready(function () {
                 var html = '';
                 $(items).each(function (key, item) {
-                    html += '<input type="checkbox" value="' + item.id + '" ';
-                    if (item.checked) {
-                        html += ' checked ';
-                    }
-                    html += ' />' + item.name + '<br/>';
+                    var templateString = '<input type="checkbox" value=<%- id %> }} <% if (checked) { print("checked"); } %> /> <%- name %> <br/>';
+                    var template = _.template(templateString);
+                    html += template(item);
                 });
-                $('#content').html(html);
                 
+                $('#content').html(html);
                 
                 $('input').change(function () {
                     
