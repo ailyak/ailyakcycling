@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 $app = new Silex\Application();
-$app['debug'] = true;
+$app['debug'] = false;
 
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
@@ -28,8 +28,6 @@ $app->get('/', function () use ($app) {
     curl_close($ch);
     $dataDecoded = json_decode($data, true);
     $posts = $dataDecoded['data'];
-    
-//    echo '<pre>'; print_r($posts); die;
     
     return $app['twig']->render('facebook/posts.twig', array(
                 'posts' => $posts,
