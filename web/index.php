@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 $app = new Silex\Application();
-$app['debug'] = false;
+$app['debug'] = true;
 
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
@@ -32,6 +32,16 @@ $app->get('/', function () use ($app) {
     return $app['twig']->render('facebook/posts.twig', array(
                 'posts' => $posts,
     ));
+});
+
+$app->get('/test', function() use ($app) {
+    
+    $items = [
+        new \Ailyak\Ride\Item('Помпа'),
+        new \Ailyak\Ride\Item('Фар'),
+    ];
+    
+    return $app['twig']->render('beforeRide/requirements.twig', array('items' => $items));
 });
 
 $app->run();

@@ -1,0 +1,33 @@
+{% extends "template.twig" %}
+
+{% block content %}
+    <table>
+        <tr>
+            <th>
+                З
+            </th>
+            <th>
+                П
+            </th>
+            <th>
+                Име
+            </th>
+        </tr>
+    {% for item in items %}
+        <tr>
+            <td>
+                <input type="checkbox" id="item_required_{{ item.hash }}"/>
+            </td>
+            <td>
+                <input type="checkbox" id="item_optional_{{ item.hash }}"/>
+            </td>
+            <td>
+                <label for="item_required_{{ item.hash }}">
+                    {{ item.name|e }}
+                </label>
+            </td>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
