@@ -61,6 +61,11 @@
             font-size: 13px;
             font-weight: bold;
         }
+        
+        .fbcomment {
+            text-align: left;
+        }
+        
         .fberrorbox
         {
             background-color: #ffebe8;
@@ -103,7 +108,7 @@
         {% for post in posts %}
 
             {% if post.message is defined %}
-                <div class="fbinfobox" style="width: 500px;"> 
+                <div class="fbinfobox fbcomment" style="width: 500px;"> 
                     <div>
                         <a href="https://www.facebook.com/{{post.from.id}}">{{ post.from.name }}</a>,
                         <a href="{{ post.actions|first.link }}">
@@ -117,7 +122,7 @@
 
                     {% for comment in post.comments.data %}
 
-                        <div class="fbgreybox" style="width: 500px;">  
+                        <div class="fbgreybox fbcomment" style="width: 500px;">  
                             <div>
 
                                 <a href="https://www.facebook.com/{{comment.from.id}}">{{ comment.from.name }}</a>,
