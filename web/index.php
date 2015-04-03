@@ -16,7 +16,7 @@ $app['config'] = $ymlParser->parse(file_get_contents(__DIR__ . '/../config/confi
 
 $app->get('/', function () use ($app) {
 
-    $url = "https://graph.facebook.com/561003627289743/feed?limit=10&access_token={$app['config']['facebook']['token']}";
+    $url = "https://graph.facebook.com/v2.3/561003627289743/feed?limit=10&access_token={$app['config']['facebook']['token']}";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
